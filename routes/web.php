@@ -1,45 +1,49 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PincodeController;
 
-// Redirect Home
+// Home
 Route::get('/', function () {
     return redirect('/country');
 });
 
-// Country CRUD
-Route::get('/country', [CountryController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| Country CRUD
+|--------------------------------------------------------------------------
+*/
 
-Route::post('/country/store', [CountryController::class, 'store']);
+Route::get('/country', [CountryController::class, 'index'])->name('country.index');
 
-Route::get('/country/edit/{id}', [CountryController::class, 'edit']);
+Route::post('/country/store', [CountryController::class, 'store'])->name('country.store');
 
-Route::post('/country/update/{id}', [CountryController::class, 'update']);
+Route::get('/country/edit/{id}', [CountryController::class, 'edit'])->name('country.edit');
 
-Route::delete('/country/delete/{id}', [CountryController::class, 'destroy']);
-=======
-use App\Http\Controllers\PincodeController;
+Route::post('/country/update/{id}', [CountryController::class, 'update'])->name('country.update');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::delete('/country/delete/{id}', [CountryController::class, 'destroy'])->name('country.delete');
 
 
-    Route::get('/pincodes', [PincodeController::class, 'index'])->name('pincodes.index');
+/*
+|--------------------------------------------------------------------------
+| Pincode CRUD
+|--------------------------------------------------------------------------
+*/
 
-    Route::get('/pincodes/datatable', [PincodeController::class, 'datatable'])->name('pincodes.datatable');
+Route::get('/pincodes', [PincodeController::class, 'index'])->name('pincodes.index');
 
-    Route::post('/pincodes/store', [PincodeController::class, 'store'])->name('pincodes.store');
+Route::get('/pincodes/datatable', [PincodeController::class, 'datatable'])->name('pincodes.datatable');
 
-    Route::get('/pincodes/edit/{id}', [PincodeController::class, 'edit'])->name('pincodes.edit');
+Route::post('/pincodes/store', [PincodeController::class, 'store'])->name('pincodes.store');
 
-    Route::post('/pincodes/update/{id}', [PincodeController::class, 'update'])->name('pincodes.update');
+Route::get('/pincodes/edit/{id}', [PincodeController::class, 'edit'])->name('pincodes.edit');
 
-    Route::delete('/pincodes/delete/{id}', [PincodeController::class, 'destroy'])->name('pincodes.delete');
+Route::post('/pincodes/update/{id}', [PincodeController::class, 'update'])->name('pincodes.update');
 
-    Route::get('/states/{country}', [PincodeController::class, 'getStates']);
+Route::delete('/pincodes/delete/{id}', [PincodeController::class, 'destroy'])->name('pincodes.delete');
 
-    Route::get('/cities/{state}', [PincodeController::class, 'getCities']);
->>>>>>> Stashed changes
+Route::get('/states/{country}', [PincodeController::class, 'getStates']);
+
+Route::get('/cities/{state}', [PincodeController::class, 'getCities']);
