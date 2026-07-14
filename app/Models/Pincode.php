@@ -11,7 +11,7 @@ class Pincode extends Model
 
     protected $fillable = [
         'city_id',
-        'pincode'
+        'pincode',
     ];
 
     public function city()
