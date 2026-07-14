@@ -1,12 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CountryController;
+// Redirect Home
 use App\Http\Controllers\StateController;
-
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/country');
 });
+Route::get('/country', [CountryController::class, 'index']);
+
+Route::post('/country/store', [CountryController::class, 'store']);
+
+Route::get('/country/edit/{id}', [CountryController::class, 'edit']);
+
+Route::post('/country/update/{id}', [CountryController::class, 'update']);
+
+Route::delete('/country/delete/{id}', [CountryController::class, 'destroy']);
 
 Route::get('/state', [StateController::class, 'index']);
 
