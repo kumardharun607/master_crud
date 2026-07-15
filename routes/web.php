@@ -3,9 +3,9 @@
 
 use App\Http\Controllers\PincodeController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\CityController;
 
 // Redirect Home
 Route::get('/', function () {
@@ -23,13 +23,6 @@ Route::post('/country/update/{id}', [CountryController::class, 'update']);
 
 Route::delete('/country/delete/{id}', [CountryController::class, 'destroy']);
 
-// pincode CRUD
-=======
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\StateController;
-use App\Http\Controllers\PincodeController;
-use App\Http\Controllers\CityController;
-
 /*
 |--------------------------------------------------------------------------
 | Home
@@ -39,7 +32,6 @@ use App\Http\Controllers\CityController;
 | Country CRUD
 |--------------------------------------------------------------------------
 */
->>>>>>> a6b69eba8179c828202d0310c60122e889da5d7f
 
 Route::get('/country', [CountryController::class, 'index'])->name('country.index');
 
@@ -59,10 +51,9 @@ Route::delete('/country/delete/{id}', [CountryController::class, 'destroy'])->na
 
 Route::get('/state', [StateController::class, 'index'])->name('state.index');
 
-<<<<<<< HEAD
     Route::get('/cities/{state}', [PincodeController::class, 'getCities']);
-=======
-Route::post('/state', [StateController::class, 'store'])->name('state.store');
+
+    Route::post('/state', [StateController::class, 'store'])->name('state.store');
 
 Route::get('/state/list', [StateController::class, 'list'])->name('state.list');
 
@@ -113,4 +104,4 @@ Route::put('/city/{id}', [CityController::class, 'update']);
 Route::delete('/city/{id}', [CityController::class, 'destroy']);
 
 Route::get('/states-by-country/{countryId}', [CityController::class, 'getStates']);
->>>>>>> a6b69eba8179c828202d0310c60122e889da5d7f
+
