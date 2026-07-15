@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\PincodeController;
+use App\Http\Controllers\CityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,17 @@ Route::delete('/pincodes/delete/{id}', [PincodeController::class, 'destroy'])->n
 Route::get('/states/{country}', [PincodeController::class, 'getStates']);
 
 Route::get('/cities/{state}', [PincodeController::class, 'getCities']);
+
+Route::get('/city', [CityController::class, 'index']);
+
+Route::get('/city/list', [CityController::class, 'list']);
+
+Route::post('/city', [CityController::class, 'store']);
+
+Route::get('/city/{id}/edit', [CityController::class, 'edit']);
+
+Route::put('/city/{id}', [CityController::class, 'update']);
+
+Route::delete('/city/{id}', [CityController::class, 'destroy']);
+
+Route::get('/states-by-country/{countryId}', [CityController::class, 'getStates']);

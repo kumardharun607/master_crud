@@ -48,6 +48,7 @@
                 class="w-full border rounded px-3 py-2">
 
         </div>
+        <input type="hidden" id="state_id">
 
         <div class="flex items-end">
 
@@ -64,5 +65,60 @@
     </div>
 
 </div>
+<div class="bg-white rounded-lg shadow mt-8 p-6">
+
+    <h2 class="text-2xl font-bold mb-5">
+        State List
+    </h2>
+
+    {{-- <table class="w-full border border-collapse">
+
+        <thead>
+
+            <tr class="bg-gray-200">
+
+                <th class="border p-2">SI.NO</th>
+
+                <th class="border p-2">Country</th>
+
+                <th class="border p-2">State</th>
+
+                <th class="border p-2">Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="stateTableBody">
+
+        </tbody>
+
+    </table> --}}
+    <table
+    id="stateTable"
+    class="display w-full border">
+
+    <thead>
+
+        <tr>
+
+            <th>S.I No</th>
+
+            <th>Country</th>
+
+            <th>State</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+</table>
+
+</div>
 
 @endsection
+@push('scripts')
+<script src="{{ asset('js/state.js') }}"></script>
+@endpush

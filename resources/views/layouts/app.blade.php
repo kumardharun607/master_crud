@@ -3,8 +3,9 @@
 <head>
 
     <title>Master</title>
-
+     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -65,7 +66,11 @@
     </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 @stack('scripts')
+
 </body>
 
 </html>
