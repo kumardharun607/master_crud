@@ -104,4 +104,3 @@ Route::put('/city/{id}', [CityController::class, 'update']);
 Route::delete('/city/{id}', [CityController::class, 'destroy']);
 
 Route::get('/states-by-country/{countryId}', [CityController::class, 'getStates']);
-

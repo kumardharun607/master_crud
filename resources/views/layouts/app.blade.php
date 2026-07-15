@@ -5,6 +5,10 @@
     <title>Master</title>
      <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
     <script src="https://cdn.tailwindcss.com"></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43963cc417addeb80367e67a8f30d5ff2522e514
     
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -21,7 +25,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 @stack('styles')
 
+<<<<<<< HEAD
     <meta name="csrf-token" content="{{ csrf_token() }}">
+=======
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+>>>>>>> 43963cc417addeb80367e67a8f30d5ff2522e514
 
 </head>
 
@@ -84,8 +94,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+<<<<<<< HEAD
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
+=======
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+
+>>>>>>> 43963cc417addeb80367e67a8f30d5ff2522e514
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 
 @stack('scripts')

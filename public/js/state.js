@@ -86,6 +86,9 @@ function addState(){
     });
 
 }
+$(document).on('click','#reset',function(){
+    clearForm();
+});
 function updateState(id){
 
     $.ajax({

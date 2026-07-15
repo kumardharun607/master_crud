@@ -65,6 +65,8 @@
                 id="city_name"
                 class="w-full border rounded p-2">
 
+                <input type="hidden" id="city_id">
+
         </div>
 
         <div class="flex items-end">
@@ -76,13 +78,50 @@
                 Add City
 
             </button>
+                            <button id="reset"
+                    type="reset"
+                    class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg ml-3">
+
+                    Reset
+
+                </button>
 
         </div>
 
     </div>
 
 </div>
+<div class="bg-white rounded shadow mt-8 p-6">
 
+    <h2 class="text-2xl font-bold mb-5">
+        City List
+    </h2>
+
+    <table
+        id="cityTable"
+        class="display w-full border">
+
+        <thead>
+
+            <tr>
+
+                <th>S.I No</th>
+
+                <th>Country</th>
+
+                <th>State</th>
+
+                <th>City</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+    </table>
+
+</div>
 @endsection
 
 @push('scripts')

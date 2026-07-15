@@ -59,6 +59,13 @@
                 Add State
 
             </button>
+                            <button id="reset"
+                    type="reset"
+                    class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg ml-3">
+
+                    Reset
+
+                </button>
 
         </div>
 
