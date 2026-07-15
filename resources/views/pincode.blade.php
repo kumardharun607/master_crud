@@ -1,33 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-#pincodeTable{
-width:100% !important;
-table-layout:fixed;
-}
+    <style>
+        #pincodeTable {
+            width: 100% !important;
+            table-layout: fixed;
+        }
 
-#pincodeTable th,
-#pincodeTable td{
-text-align:center !important;
-vertical-align:middle !important;
-}
+        #pincodeTable th,
+        #pincodeTable td {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
 
-#pincodeTable td{
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-}
+        #pincodeTable td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-table.dataTable thead th{
-text-align:center !important;
-}
+        table.dataTable thead th {
+            text-align: center !important;
+        }
 
-table.dataTable tbody td{
-text-align:center !important;
-vertical-align:middle !important;
-}
-</style>
+        table.dataTable tbody td {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+    </style>
     <div class="max-w-7xl mx-auto">
         <div class="bg-blue-600 text-white rounded-lg shadow mb-6">
             <div class="px-6 py-4">
@@ -160,55 +160,55 @@ vertical-align:middle !important;
 
                 columns: [
 
-{
-data:'DT_RowIndex',
-name:'DT_RowIndex',
-searchable:false,
-orderable:false,
-width:'6%'
-},
+                    {
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        searchable: false,
+                        orderable: false,
+                        width: '6%'
+                    },
 
-{
-data:'country',
-name:'country',
-width:'12%'
-},
+                    {
+                        data: 'country',
+                        name: 'country',
+                        width: '12%'
+                    },
 
-{
-data:'state',
-name:'state',
-width:'18%'
-},
+                    {
+                        data: 'state',
+                        name: 'state',
+                        width: '18%'
+                    },
 
-{
-data:'city',
-name:'city',
-width:'18%'
-},
+                    {
+                        data: 'city',
+                        name: 'city',
+                        width: '18%'
+                    },
 
-{
-data:'area',
-name:'area',
-width:'22%'
-},
+                    {
+                        data: 'area',
+                        name: 'area',
+                        width: '22%'
+                    },
 
-{
-data:'pincode',
-name:'pincode',
-width:'10%'
-},
+                    {
+                        data: 'pincode',
+                        name: 'pincode',
+                        width: '10%'
+                    },
 
-{
-data:'action',
-name:'action',
-searchable:false,
-orderable:false,
-width:'14%'
-}
+                    {
+                        data: 'action',
+                        name: 'action',
+                        searchable: false,
+                        orderable: false,
+                        width: '14%'
+                    }
 
-],
+                ],
 
-autoWidth:false,
+                autoWidth: false,
 
             });
 

@@ -22,50 +22,76 @@ class PincodeController extends Controller
     // Yajra DataTable
 
     public function datatable(Request $request)
-    {
-        if ($request->ajax()) {
+{
+    if ($request->ajax()) {
 
-            $pincodes = Pincode::with('city.state.country')->select('pincodes.*');
+        $pincodes = Pincode::with('city.state.country')
+            ->select('pincodes.*');
 
-            return DataTables::of($pincodes)
+        return DataTables::of($pincodes)
 
-                ->addIndexColumn()
+            ->addIndexColumn()
 
-                ->addColumn('country', function ($row) {
-                    return optional($row->city->state->country)->country_name;
-                })
+            ->addColumn('country', function ($row) {
+                return optional($row->city->state->country)->country_name;
+            })
 
-                ->addColumn('state', function ($row) {
-                    return optional($row->city->state)->state_name;
-                })
+            ->addColumn('state', function ($row) {
+                return optional($row->city->state)->state_name;
+            })
 
-                ->addColumn('city', function ($row) {
-                    return optional($row->city)->city_name;
-                })
-                ->addColumn('area', function ($row) {
-                    return $row->area_name;
-                })  
+            ->addColumn('city', function ($row) {
+                return optional($row->city)->city_name;
+            })
 
-                ->addColumn('action', function ($row) {
+            ->addColumn('area', function ($row) {
+                return $row->area_name;
+            })
 
-                   return '
-<div class="flex justify-center items-center gap-2">
-<button class="editBtn bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
-<i class="fa fa-edit"></i>
-</button>
+            // Country Search
+            ->filterColumn('country', function ($query, $keyword) {
+                $query->whereHas('city.state.country', function ($q) use ($keyword) {
+                    $q->where('country_name', 'like', "%{$keyword}%");
+                });
+            })
 
-<button class="deleteBtn bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
-<i class="fa fa-trash"></i>
-</button>
-</div>
-';
-                })
+            // State Search
+            ->filterColumn('state', function ($query, $keyword) {
+                $query->whereHas('city.state', function ($q) use ($keyword) {
+                    $q->where('state_name', 'like', "%{$keyword}%");
+                });
+            })
 
-                ->rawColumns(['action'])
+            // City Search
+            ->filterColumn('city', function ($query, $keyword) {
+                $query->whereHas('city', function ($q) use ($keyword) {
+                    $q->where('city_name', 'like', "%{$keyword}%");
+                });
+            })
 
-                ->make(true);
-        }
+            // Area Search
+            ->filterColumn('area', function ($query, $keyword) {
+                $query->where('area_name', 'like', "%{$keyword}%");
+            })
+
+            ->addColumn('action', function ($row) {
+
+                return '
+                <div class="flex justify-center gap-2">
+                    <button class="editBtn bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
+                        <i class="fa fa-edit"></i>
+                    </button>
+
+                    <button class="deleteBtn bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>';
+            })
+
+            ->rawColumns(['action'])
+            ->make(true);
     }
+}
 
 
     //     public function datatable(Request $request)
