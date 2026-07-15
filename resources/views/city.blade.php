@@ -65,6 +65,8 @@
                 id="city_name"
                 class="w-full border rounded p-2">
 
+                <input type="hidden" id="city_id">
+
         </div>
 
         <div class="flex items-end">
@@ -82,7 +84,37 @@
     </div>
 
 </div>
+<div class="bg-white rounded shadow mt-8 p-6">
 
+    <h2 class="text-2xl font-bold mb-5">
+        City List
+    </h2>
+
+    <table
+        id="cityTable"
+        class="display w-full border">
+
+        <thead>
+
+            <tr>
+
+                <th>S.I No</th>
+
+                <th>Country</th>
+
+                <th>State</th>
+
+                <th>City</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+    </table>
+
+</div>
 @endsection
 
 @push('scripts')
