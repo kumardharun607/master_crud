@@ -10,6 +10,7 @@ class City extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        
         'state_id',
         'city_name'
     ];

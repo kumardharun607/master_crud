@@ -2,122 +2,180 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="max-w-7xl mx-auto">
 
-    <div class="card shadow">
-
-        <div class="card-header bg-primary text-white">
-            <h4>Pincode Management</h4>
+    <!-- Heading -->
+    <div class="bg-blue-600 text-white rounded-lg shadow mb-6">
+        <div class="px-6 py-4">
+            <h2 class="text-xl font-bold">
+                <i class="fa fa-map-pin mr-2"></i>
+                Pincode Management
+            </h2>
         </div>
+    </div>
 
-        <div class="card-body">
+    <!-- Form -->
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
 
-            <form id="pincodeForm">
+        <form id="pincodeForm">
 
-                @csrf
+            @csrf
 
-                <input type="hidden" id="id" name="id">
+            <input type="hidden" id="id" name="id">
 
-                <div class="row">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
 
-                    <div class="col-md-3 mb-3">
-                        <label>Country</label>
+                <!-- Country -->
 
-                        <select class="form-control" id="country_id" name="country_id">
+                <div>
 
-                            <option value="">Select Country</option>
+                    <label class="block mb-2 font-semibold">
+                        Country
+                    </label>
 
-                            @foreach($countries as $country)
+                    <select
+                        id="country_id"
+                        name="country_id"
+                        class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
 
-                                <option value="{{ $country->id }}">
-                                    {{ $country->country_name }}
-                                </option>
+                        <option value="">
+                            Select Country
+                        </option>
 
-                            @endforeach
+                        @foreach($countries as $country)
 
-                        </select>
-                    </div>
+                            <option value="{{ $country->id }}">
+                                {{ $country->country_name }}
+                            </option>
 
+                        @endforeach
 
-                    <div class="col-md-3 mb-3">
-
-                        <label>State</label>
-
-                        <select class="form-control" id="state_id" name="state_id">
-
-                            <option value="">Select State</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="col-md-3 mb-3">
-
-                        <label>City</label>
-
-                        <select class="form-control" id="city_id" name="city_id">
-
-                            <option value="">Select City</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="col-md-3 mb-3">
-
-                        <label>Pincode</label>
-
-                        <input type="text"
-                               class="form-control"
-                               id="pincode"
-                               name="pincode"
-                               maxlength="6">
-
-                    </div>
+                    </select>
 
                 </div>
 
 
-                <button class="btn btn-success" id="saveBtn">
+                <!-- State -->
+
+                <div>
+
+                    <label class="block mb-2 font-semibold">
+                        State
+                    </label>
+
+                    <select
+                        id="state_id"
+                        name="state_id"
+                        class="w-full border rounded-lg p-3">
+
+                        <option value="">
+                            Select State
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- City -->
+
+                <div>
+
+                    <label class="block mb-2 font-semibold">
+                        City
+                    </label>
+
+                    <select
+                        id="city_id"
+                        name="city_id"
+                        class="w-full border rounded-lg p-3">
+
+                        <option value="">
+                            Select City
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Pincode -->
+
+                <div>
+
+                    <label class="block mb-2 font-semibold">
+                        Pincode
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pincode"
+                        name="pincode"
+                        maxlength="6"
+                        placeholder="Enter Pincode"
+                        class="w-full border rounded-lg p-3">
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-6 flex gap-3">
+
+                <button
+                    id="saveBtn"
+                    type="submit"
+                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">
+
+                    <i class="fa fa-save mr-2"></i>
 
                     Save
 
                 </button>
 
-                <button type="reset" class="btn btn-secondary">
+
+                <button
+                    type="reset"
+                    class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg">
 
                     Reset
 
                 </button>
 
-            </form>
+            </div>
 
-        </div>
+        </form>
 
     </div>
 
-    <br>
 
+    <!-- DataTable -->
 
-    <div class="card shadow">
+    <div class="bg-white rounded-lg shadow">
 
-        <div class="card-header bg-dark text-white">
+        <div class="bg-gray-800 text-white px-5 py-3 rounded-t-lg">
 
-            Pincode List
+            <h3 class="font-bold">
+
+                <i class="fa fa-list mr-2"></i>
+
+                Pincode List
+
+            </h3>
 
         </div>
 
-        <div class="card-body">
+        <div class="p-5 overflow-x-auto">
 
-            <table class="table table-bordered" id="pincodeTable">
+            <table
+                id="pincodeTable"
+                class="display stripe hover w-full">
 
                 <thead>
 
                 <tr>
 
-                    <th>S.No</th>
+                    <th>SI No</th>
 
                     <th>Country</th>
 
@@ -140,66 +198,96 @@
     </div>
 
 </div>
-<link rel="stylesheet"
-href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-
 @endsection
+
 @push('scripts')
 
 <script>
 
 $(document).ready(function () {
 
-    //=============================
-    // Yajra DataTable
-    //=============================
+    // ==========================
+    // Initialize DataTable
+    // ==========================
 
-    var table = $('#pincodeTable').DataTable({
+    if ($.fn.DataTable.isDataTable('#pincodeTable')) {
+        $('#pincodeTable').DataTable().destroy();
+    }
+
+    let table = $('#pincodeTable').DataTable({
 
         processing: true,
-
         serverSide: true,
 
-        ajax: "{{ route('pincodes.datatable') }}",
+        ajax: {
+            url: "{{ route('pincodes.datatable') }}",
+            type: "GET"
+        },
 
         columns: [
 
-            {data:'DT_RowIndex', name:'DT_RowIndex', orderable:false, searchable:false},
+            {
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                searchable: false,
+                orderable: false
+            },
 
-            {data:'country', name:'country'},
+            {
+                data: 'country',
+                name: 'country'
+            },
 
-            {data:'state', name:'state'},
+            {
+                data: 'state',
+                name: 'state'
+            },
 
-            {data:'city', name:'city'},
+            {
+                data: 'city',
+                name: 'city'
+            },
 
-            {data:'pincode', name:'pincode'},
+            {
+                data: 'pincode',
+                name: 'pincode'
+            },
 
-            {data:'action', name:'action', orderable:false, searchable:false}
+            {
+                data: 'action',
+                name: 'action',
+                searchable: false,
+                orderable: false
+            }
 
         ]
 
     });
 
 
-    //=============================
+
+
+    // ==========================
     // Country -> State
-    //=============================
+    // ==========================
 
-    $('#country_id').change(function(){
+    $('#country_id').on('change', function () {
 
-        let country_id = $(this).val();
+        let countryId = $(this).val();
 
         $('#state_id').html('<option value="">Loading...</option>');
-
         $('#city_id').html('<option value="">Select City</option>');
+
+        if(countryId==""){
+
+            $('#state_id').html('<option value="">Select State</option>');
+            return;
+
+        }
 
         $.ajax({
 
-            url:'/states/'+country_id,
+            url:'/states/'+countryId,
 
             type:'GET',
 
@@ -207,11 +295,11 @@ $(document).ready(function () {
 
                 $('#state_id').html('<option value="">Select State</option>');
 
-                $.each(response,function(key,value){
+                $.each(response,function(index,row){
 
                     $('#state_id').append(
 
-                        '<option value="'+value.id+'">'+value.state_name+'</option>'
+                        '<option value="'+row.id+'">'+row.state_name+'</option>'
 
                     );
 
@@ -225,75 +313,201 @@ $(document).ready(function () {
 
 
 
-    //=============================
+
+
+    // ==========================
     // State -> City
-    //=============================
+    // ==========================
 
-    $('#state_id').change(function(){
-        let state_id=$(this).val();
+    $('#state_id').on('change', function () {
+
+        let stateId=$(this).val();
+
         $('#city_id').html('<option value="">Loading...</option>');
-        $.ajax({
-            url:'/cities/'+state_id,
-            type:'GET',
-            success:function(response){
-                $('#city_id').html('<option value="">Select City</option>');
-                $.each(response,function(key,value){
-                    $('#city_id').append(
-                        '<option value="'+value.id+'">'+value.city_name+'</option>'
-                    );
-                });
-            }
-        });
-    });
-    //=============================
-// Save Pincode
-//=============================
 
-$('#pincodeForm').submit(function(e){
-
-    e.preventDefault();
-
-    $.ajax({
-
-        url: "{{ route('pincodes.store') }}",
-
-        type: "POST",
-
-        data: $(this).serialize(),
-
-        success:function(response){
-
-            alert(response.message);
-
-            $('#pincodeForm')[0].reset();
-
-            $('#state_id').html('<option value="">Select State</option>');
+        if(stateId==""){
 
             $('#city_id').html('<option value="">Select City</option>');
+            return;
 
-            $('#pincodeTable').DataTable().ajax.reload(null,false);
+        }
 
-        },
+        $.ajax({
 
-        error:function(xhr){
+            url:'/cities/'+stateId,
 
-            let errors = xhr.responseJSON.errors;
+            type:'GET',
 
-            let message = "";
+            success:function(response){
 
-            $.each(errors,function(key,value){
+                $('#city_id').html('<option value="">Select City</option>');
 
-                message += value[0]+"\n";
+                $.each(response,function(index,row){
+
+                    $('#city_id').append(
+
+                        '<option value="'+row.id+'">'+row.city_name+'</option>'
+
+                    );
+
+                });
+
+            }
+
+        });
+
+    });
+
+
+
+
+
+
+    // ==========================
+    // Save / Update
+    // ==========================
+
+    $('#pincodeForm').submit(function(e){
+
+        e.preventDefault();
+
+        let id=$("#id").val();
+
+        let url=id==''
+
+            ? "{{ route('pincodes.store') }}"
+
+            : "/pincodes/update/"+id;
+
+        $.ajax({
+
+            url:url,
+
+            type:'POST',
+
+            data:$(this).serialize(),
+
+            success:function(res){
+
+                alert(res.message);
+
+                $('#pincodeForm')[0].reset();
+
+                $('#id').val('');
+
+                $('#saveBtn').html('<i class="fa fa-save"></i> Save');
+
+                $('#state_id').html('<option>Select State</option>');
+
+                $('#city_id').html('<option>Select City</option>');
+
+                table.ajax.reload(null,false);
+
+            },
+
+            error:function(xhr){
+
+                let errors=xhr.responseJSON.errors;
+
+                let msg='';
+
+                $.each(errors,function(k,v){
+
+                    msg+=v[0]+"\n";
+
+                });
+
+                alert(msg);
+
+            }
+
+        });
+
+    });
+
+
+
+
+
+
+    // ==========================
+    // Edit
+    // ==========================
+
+    $(document).on('click','.editBtn',function(){
+
+        let id=$(this).data('id');
+
+        $.get('/pincodes/edit/'+id,function(res){
+
+            $('#id').val(res.id);
+
+            $('#pincode').val(res.pincode);
+
+            $('#country_id').val(res.city.state.country.id).trigger('change');
+
+            setTimeout(function(){
+
+                $('#state_id').val(res.city.state.id).trigger('change');
+
+            },500);
+
+            setTimeout(function(){
+
+                $('#city_id').val(res.city.id);
+
+            },900);
+
+            $('#saveBtn').html('<i class="fa fa-edit"></i> Update');
+
+        });
+
+    });
+
+
+
+
+
+
+
+    // ==========================
+    // Delete
+    // ==========================
+
+    $(document).on('click','.deleteBtn',function(){
+
+        if(confirm('Are you sure?')){
+
+            let id=$(this).data('id');
+
+            $.ajax({
+
+                url:'/pincodes/delete/'+id,
+
+                type:'POST',
+
+                data:{
+
+                    _token:'{{ csrf_token() }}',
+
+                    _method:'DELETE'
+
+                },
+
+                success:function(res){
+
+                    alert(res.message);
+
+                    table.ajax.reload(null,false);
+
+                }
 
             });
-
-            alert(message);
 
         }
 
     });
 
-});
 });
 
 </script>
