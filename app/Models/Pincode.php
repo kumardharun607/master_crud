@@ -10,9 +10,10 @@ class Pincode extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'city_id',
-        'pincode',
-    ];
+    'city_id',
+    'area_name',
+    'pincode',
+];
 
     public function city()
     {

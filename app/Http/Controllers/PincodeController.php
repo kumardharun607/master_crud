@@ -25,7 +25,7 @@ class PincodeController extends Controller
     {
         if ($request->ajax()) {
 
-            $pincodes = Pincode::with('city.state.country');
+            $pincodes = Pincode::with('city.state.country')->select('pincodes.*');
 
             return DataTables::of($pincodes)
 
@@ -42,17 +42,22 @@ class PincodeController extends Controller
                 ->addColumn('city', function ($row) {
                     return optional($row->city)->city_name;
                 })
+                ->addColumn('area', function ($row) {
+                    return $row->area_name;
+                })  
 
                 ->addColumn('action', function ($row) {
 
-                    return '
-<button class="editBtn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mr-2" data-id="'.$row->id.'">
-    <i class="fa fa-edit"></i>
+                   return '
+<div class="flex justify-center items-center gap-2">
+<button class="editBtn bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
+<i class="fa fa-edit"></i>
 </button>
 
-<button class="deleteBtn bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" data-id="'.$row->id.'">
-    <i class="fa fa-trash"></i>
+<button class="deleteBtn bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded" data-id="'.$row->id.'">
+<i class="fa fa-trash"></i>
 </button>
+</div>
 ';
                 })
 
@@ -97,11 +102,13 @@ class PincodeController extends Controller
             'country_id' => 'required',
             'state_id' => 'required',
             'city_id' => 'required',
+            'area_name' => 'required|max:100',
             'pincode' => 'required|digits:6|unique:pincodes,pincode',
         ]);
 
         Pincode::create([
             'city_id' => $request->city_id,
+            'area_name' => $request->area_name,
             'pincode' => $request->pincode,
         ]);
 
@@ -130,6 +137,8 @@ class PincodeController extends Controller
 
             'city_id' => 'required',
 
+            'area_name' => 'required|max:100',
+
             'pincode' => 'required|digits:6|unique:pincodes,pincode,' . $id,
 
         ]);
@@ -139,6 +148,8 @@ class PincodeController extends Controller
         $pincode->update([
 
             'city_id' => $request->city_id,
+
+            'area_name' => $request->area_name,
 
             'pincode' => $request->pincode,
 
