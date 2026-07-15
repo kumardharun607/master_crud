@@ -24,7 +24,9 @@ Route::post('/country/update/{id}', [CountryController::class, 'update']);
 Route::delete('/country/delete/{id}', [CountryController::class, 'destroy']);
 
 /*
-
+|--------------------------------------------------------------------------
+| Home
+|--------------------------------------------------------------------------
 
 |--------------------------------------------------------------------------
 | Country CRUD
@@ -102,4 +104,3 @@ Route::put('/city/{id}', [CityController::class, 'update']);
 Route::delete('/city/{id}', [CityController::class, 'destroy']);
 
 Route::get('/states-by-country/{countryId}', [CityController::class, 'getStates']);
-
