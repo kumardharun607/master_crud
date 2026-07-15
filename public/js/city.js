@@ -210,6 +210,9 @@ $(document).on('click','.editBtn',function(){
     });
 
 });
+$(document).on('click','#reset',function(){
+    clearForm();
+});
 $(document).on('click','.deleteBtn',function(){
 
     let id = $(this).data('id');
