@@ -1,7 +1,9 @@
 <?php
 
+
+use App\Http\Controllers\PincodeController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
+
 use App\Http\Controllers\CountryController;
 
 // Redirect Home
@@ -19,13 +21,8 @@ Route::get('/country/edit/{id}', [CountryController::class, 'edit']);
 Route::post('/country/update/{id}', [CountryController::class, 'update']);
 
 Route::delete('/country/delete/{id}', [CountryController::class, 'destroy']);
-=======
-use App\Http\Controllers\PincodeController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// pincode CRUD
 
     Route::get('/pincodes', [PincodeController::class, 'index'])->name('pincodes.index');
 
@@ -42,4 +39,3 @@ use App\Http\Controllers\PincodeController;
     Route::get('/states/{country}', [PincodeController::class, 'getStates']);
 
     Route::get('/cities/{state}', [PincodeController::class, 'getCities']);
->>>>>>> Stashed changes
