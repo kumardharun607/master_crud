@@ -5,7 +5,26 @@
     <title>Master</title>
      <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
     <script src="https://cdn.tailwindcss.com"></script>
+<<<<<<< HEAD
+    
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DataTables -->
+<link rel="stylesheet"
+href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+@stack('styles')
+
+=======
     <meta name="csrf-token" content="{{ csrf_token() }}">
+>>>>>>> a6b69eba8179c828202d0310c60122e889da5d7f
 
 </head>
 
@@ -47,7 +66,7 @@
             </li>
 
             <li>
-                <a href="#"
+                <a href="/pincodes"
                 class="block px-6 py-3 hover:bg-gray-700">
                     Pincode
                 </a>
@@ -68,7 +87,12 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+<<<<<<< HEAD
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+=======
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+>>>>>>> a6b69eba8179c828202d0310c60122e889da5d7f
 @stack('scripts')
 
 </body>

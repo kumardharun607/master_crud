@@ -20,13 +20,12 @@ class PincodeController extends Controller
     }
 
     // Yajra DataTable
+
     public function datatable(Request $request)
     {
         if ($request->ajax()) {
 
-            $pincodes = Pincode::with([
-                'city.state.country'
-            ])->whereNull('deleted_at');
+            $pincodes = Pincode::with('city.state.country');
 
             return DataTables::of($pincodes)
 
@@ -47,14 +46,14 @@ class PincodeController extends Controller
                 ->addColumn('action', function ($row) {
 
                     return '
-                        <button class="btn btn-sm btn-primary editBtn" data-id="'.$row->id.'">
-                            <i class="fa fa-edit"></i>
-                        </button>
+<button class="editBtn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mr-2" data-id="'.$row->id.'">
+    <i class="fa fa-edit"></i>
+</button>
 
-                        <button class="btn btn-sm btn-danger deleteBtn" data-id="'.$row->id.'">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    ';
+<button class="deleteBtn bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" data-id="'.$row->id.'">
+    <i class="fa fa-trash"></i>
+</button>
+';
                 })
 
                 ->rawColumns(['action'])
@@ -63,12 +62,20 @@ class PincodeController extends Controller
         }
     }
 
+
+    //     public function datatable(Request $request)
+// {
+//     return DataTables::of(Pincode::query())
+//         ->addIndexColumn()
+//         ->make(true);
+// }
+
     // Fetch States by Country
     public function getStates($countryId)
     {
         $states = State::where('country_id', $countryId)
-                        ->orderBy('state_name')
-                        ->get();
+            ->orderBy('state_name')
+            ->get();
 
         return response()->json($states);
     }
@@ -77,32 +84,32 @@ class PincodeController extends Controller
     public function getCities($stateId)
     {
         $cities = City::where('state_id', $stateId)
-                      ->orderBy('city_name')
-                      ->get();
+            ->orderBy('city_name')
+            ->get();
 
         return response()->json($cities);
     }
 
     // Store Pincode
     public function store(Request $request)
-{
-    $request->validate([
-        'country_id' => 'required',
-        'state_id'   => 'required',
-        'city_id'    => 'required',
-        'pincode'    => 'required|digits:6|unique:pincodes,pincode',
-    ]);
+    {
+        $request->validate([
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'pincode' => 'required|digits:6|unique:pincodes,pincode',
+        ]);
 
-    Pincode::create([
-        'city_id' => $request->city_id,
-        'pincode' => $request->pincode,
-    ]);
+        Pincode::create([
+            'city_id' => $request->city_id,
+            'pincode' => $request->pincode,
+        ]);
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Pincode Added Successfully.'
-    ]);
-}
+        return response()->json([
+            'status' => true,
+            'message' => 'Pincode Added Successfully.'
+        ]);
+    }
 
     // Edit
     public function edit($id)
@@ -116,22 +123,33 @@ class PincodeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+
             'country_id' => 'required',
-            'state_id'   => 'required',
-            'city_id'    => 'required',
-            'pincode'    => 'required|digits:6|unique:pincodes,pincode,'.$id,
+
+            'state_id' => 'required',
+
+            'city_id' => 'required',
+
+            'pincode' => 'required|digits:6|unique:pincodes,pincode,' . $id,
+
         ]);
 
         $pincode = Pincode::findOrFail($id);
 
         $pincode->update([
+
             'city_id' => $request->city_id,
+
             'pincode' => $request->pincode,
+
         ]);
 
         return response()->json([
+
             'status' => true,
+
             'message' => 'Pincode Updated Successfully'
+
         ]);
     }
 
